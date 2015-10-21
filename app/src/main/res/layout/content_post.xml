@@ -18,7 +18,9 @@
         android:id="@+id/tv_userName"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/iv_profilePhoto"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:textColor="#001d48"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,18 +30,22 @@
         android:id="@+id/tv_title"
         android:layout_alignBottom="@id/iv_profilePhoto"
         android:layout_toRightOf="@+id/iv_profilePhoto"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:textColor="#3987bb"
+        android:singleLine="true" />
 
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/iv_main"
         android:src="@mipmap/ic_launcher"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/iv_profilePhoto"
-        android:adjustViewBounds="false" />
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        />
 
     <TextView
         android:layout_width="wrap_content"

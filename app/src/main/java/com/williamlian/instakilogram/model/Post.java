@@ -62,7 +62,7 @@ public class Post {
                     String caption = captionNode == null ? "" : captionNode.getString("text");
                     int likes = likesNode.getInt("count");
 
-                    String userName = userNode.getString("full_name");
+                    String userName = userNode.getString("username");
                     String profileImage = userNode.getString("profile_picture");
                     User user = new User(profileImage, userName);
 
