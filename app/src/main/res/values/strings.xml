@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">InstaKilogram</string>
+    <string name="action_settings">Settings</string>
+    <string name="popular_photo">Popular Photos</string>
+</resources>
