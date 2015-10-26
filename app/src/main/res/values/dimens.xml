@@ -3,4 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="profile_photo_margin">5dp</dimen>
+    <dimen name="title_box_padding">5dp</dimen>
+    <dimen name="comment_box_padding">10dp</dimen>
+    <dimen name="age_min_width">30dp</dimen>
+
 </resources>

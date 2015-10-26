@@ -20,6 +20,7 @@ public class Post {
     public User author;
     public Long createdAt;
     public String location;
+    public CommentList comments;
 
     public Post(String imageUrl, String title, int likes, User author) {
         this.imageUrl = imageUrl;
@@ -68,18 +69,16 @@ public class Post {
                     JSONObject captionNode = !postData.isNull("caption") ? postData.getJSONObject("caption") : null;
                     JSONObject userNode = postData.getJSONObject("user");
                     JSONObject locationNode = postData.optJSONObject("location");
+                    JSONObject commentsNode = postData.optJSONObject("comments");
 
                     String image = imageNode.getJSONObject("standard_resolution").getString("url");
                     String caption = captionNode == null ? "" : captionNode.getString("text");
                     int likes = likesNode.getInt("count");
                     Long createdTime = null;
 
-
-                    String userName = userNode.getString("username");
-                    String profileImage = userNode.getString("profile_picture");
-                    User user = new User(profileImage, userName);
-
+                    User user = new User(userNode);
                     Post post = new Post(image, caption, likes, user);
+
                     if(!postData.isNull("created_time")) {
                         createdTime = Long.parseLong(postData.optString("created_time"));
                         post.createdAt = createdTime;
@@ -87,6 +86,9 @@ public class Post {
                     if(locationNode != null) {
                         post.location = locationNode.getString("name");
                         Log.i("post", "location obatained " + post.location);
+                    }
+                    if(commentsNode != null) {
+                        post.comments = new CommentList(commentsNode);
                     }
                     posts.add(post);
                 }

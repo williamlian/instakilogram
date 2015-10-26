@@ -8,7 +8,8 @@
         android:id="@+id/iv_profilePhoto"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_launcher"
+        android:layout_margin="@dimen/profile_photo_margin"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -54,7 +55,9 @@
         android:layout_alignTop="@id/iv_profilePhoto"
         android:layout_toRightOf="@id/ll_user"
         android:gravity="right|center_vertical"
-        android:textAppearance="?android:attr/textAppearanceSmall"/>
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:paddingRight="@dimen/title_box_padding"
+        android:minWidth="@dimen/age_min_width"/>
 
     <com.williamlian.instakilogram.widget.ResizableImageView
         android:layout_width="match_parent"
@@ -69,25 +72,43 @@
         android:scaleType="centerCrop"
         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Likes"
-        android:id="@+id/tv_likes"
-        android:layout_below="@+id/iv_main"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Caption"
-        android:id="@+id/tv_title"
-        android:layout_below="@id/tv_likes"
-        android:textColor="@color/colorHighlightText"
-        android:textColorLink="@color/colorDarkText"
-        android:textStyle="normal"/>
+        android:orientation="vertical"
+        android:layout_below="@id/iv_main"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:padding="@dimen/comment_box_padding">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Likes"
+            android:id="@+id/tv_likes"
+            android:layout_below="@+id/iv_main"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorDarkText"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Caption"
+            android:id="@+id/tv_title"
+            android:textColor="@color/colorHighlightText"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Comment"
+            android:id="@+id/tv_comment"
+            android:textColor="@color/colorHighlightText"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

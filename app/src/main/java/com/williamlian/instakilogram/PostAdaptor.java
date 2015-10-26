@@ -36,7 +36,8 @@ public class PostAdaptor extends ArrayAdapter<Post> {
 
         tv_title.setText(CommentSpanTextFactory.getSpannedString(getContext(), post.author.userName, post.title));
         tv_user.setText(post.author.userName);
-        tv_likes.setText(String.format("%d %s", post.likes, (post.likes > 1 ? "likes" : "like")));
+        String likeTemplate = getContext().getString(post.likes > 1 ? R.string.likes : R.string.likes);
+        tv_likes.setText(String.format(likeTemplate, post.likes));
         tv_age.setText(post.getAge());
         if(post.location != null) {
             tv_location.setText(post.location);
@@ -45,6 +46,9 @@ public class PostAdaptor extends ArrayAdapter<Post> {
         else {
             tv_location.setVisibility(View.GONE);
         }
+
+        TextView tv_comment = (TextView)convertView.findViewById(R.id.tv_comment);
+        tv_comment.setText(CommentSpanTextFactory.getSpannedString(getContext(), post.comments.lastComment()));
 
         Picasso.with(getContext()).
                 load(post.imageUrl).
