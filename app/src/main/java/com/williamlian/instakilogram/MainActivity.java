@@ -1,6 +1,7 @@
 package com.williamlian.instakilogram;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,6 +15,9 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private SwipeRefreshLayout swipeContainer;
+    private PostAdaptor postAdaptor;
+    private ArrayList<Post> popularPosts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,29 +26,46 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        final ListView lv_posts = (ListView) findViewById(R.id.lv_posts);
-        final ArrayList<Post> popularPhotos = new ArrayList<>();
-        //ArrayList<Post> popularPhotos = Mock.getPopularPhotos();
+        postAdaptor = new PostAdaptor(MainActivity.this, popularPosts);
+        ListView lv_posts = (ListView) findViewById(R.id.lv_posts);
+        lv_posts.setAdapter(postAdaptor);
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                fetchPosts();
+            }
+        });
+        swipeContainer.setColorSchemeResources(R.color.colorPrimary);
+
+        //initial refresh
+        swipeContainer.setRefreshing(true);
+        fetchPosts();
+    }
+
+    public void fetchPosts() {
         try {
             Post.getPopular(new Post.GetPopularCallback() {
                 @Override
                 public void onLoad(ArrayList<Post> posts) {
-                    popularPhotos.clear();
-                    popularPhotos.addAll(posts);
-                    lv_posts.setAdapter(new PostAdaptor(MainActivity.this, popularPhotos));
+                    postAdaptor.clear();
+                    postAdaptor.addAll(posts);
+                    postAdaptor.notifyDataSetChanged();
+                    swipeContainer.setRefreshing(false);
                 }
 
                 @Override
                 public void onFail(String error) {
                     System.out.println("ERROR!: " + error);
+                    swipeContainer.setRefreshing(false);
                 }
             });
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
