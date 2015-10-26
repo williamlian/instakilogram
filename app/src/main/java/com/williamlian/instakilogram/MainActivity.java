@@ -1,18 +1,22 @@
 package com.williamlian.instakilogram;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
+import com.williamlian.instakilogram.model.Comment;
 import com.williamlian.instakilogram.model.Post;
 
 import org.json.JSONException;
 
 import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
@@ -65,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

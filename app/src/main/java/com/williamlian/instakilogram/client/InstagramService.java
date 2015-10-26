@@ -9,24 +9,43 @@ import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 
 public class InstagramService {
-    private final String POPULAR = "/v1/media/popular";
+    public static final int POPULAR = 1;
+    private static final String URL_POPULAR = "/v1/media/popular";
 
-    public void getPopular(final InstagramServiceCallback callback) throws JSONException {
-        InstagramClient.get(POPULAR, null, new JsonHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                callback.onSuccess(response);
-            }
+    public static final int COMMENTS = 2;
+    private final String URL_COMMENTS = "/v1/media/%s/comments";
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                callback.onSuccess(response);
-            }
+    public void getPopular(InstagramServiceCallback callback) throws JSONException {
+        InstagramClient.get(URL_POPULAR, null, new ResponseHandler(POPULAR, callback));
+    }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                callback.onFailure(statusCode, responseString);
-            }
-        });
+    public void getComments(String mediaId, InstagramServiceCallback callback) throws JSONException {
+        String url = String.format(URL_COMMENTS, mediaId);
+        InstagramClient.get(url, null, new ResponseHandler(COMMENTS, callback));
+    }
+
+
+    public static class ResponseHandler extends JsonHttpResponseHandler {
+        private int type;
+        private InstagramServiceCallback callback;
+        public ResponseHandler(int type, InstagramServiceCallback callback) {
+            this.type = type;
+            this.callback = callback;
+        }
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            callback.onSuccess(type, response);
+        }
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            callback.onSuccess(type, response);
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            callback.onFailure(type, statusCode, responseString);
+        }
     }
 }

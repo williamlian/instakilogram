@@ -5,5 +5,7 @@
 
     <string name="like">♥ %d like</string>
     <string name="likes">♥ %d likes</string>
+    <string name="view_all_comments">View All %d Comments...</string>
+    <string name="comment_dialog_title">Comments</string>
 
 </resources>

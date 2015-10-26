@@ -21,8 +21,15 @@ public class Post {
     public Long createdAt;
     public String location;
     public CommentList comments;
+    public String mediaId;
+    public String videoUrl;
 
-    public Post(String imageUrl, String title, int likes, User author) {
+    public Post() {
+
+    }
+
+    public Post(String id, String imageUrl, String title, int likes, User author) {
+        this.mediaId = id;
         this.imageUrl = imageUrl;
         this.title = title;
         this.likes = likes;
@@ -38,15 +45,14 @@ public class Post {
         return DateHelper.getRalativeTime(this.createdAt);
     }
 
+
     public static interface GetPopularCallback {
         void onLoad(ArrayList<Post> posts);
-
         void onFail(String error);
     }
 
     public static class InstagramPopularServiceCallback implements InstagramServiceCallback {
         private GetPopularCallback onLoadCallback;
-        private ObjectMapper mapper = new ObjectMapper();
         private ArrayList<Post> posts = new ArrayList<>();
 
         public InstagramPopularServiceCallback(GetPopularCallback callback) {
@@ -54,12 +60,12 @@ public class Post {
         }
 
         @Override
-        public void onSuccess(JSONArray data) {
+        public void onSuccess(int type, JSONArray data) {
             onLoadCallback.onFail("Unexpected data: " + data.toString());
         }
 
         @Override
-        public void onSuccess(JSONObject data) {
+        public void onSuccess(int type, JSONObject data) {
             try {
                 JSONArray postsData = data.getJSONArray("data");
                 for(int i = 0; i < postsData.length(); i++) {
@@ -70,14 +76,16 @@ public class Post {
                     JSONObject userNode = postData.getJSONObject("user");
                     JSONObject locationNode = postData.optJSONObject("location");
                     JSONObject commentsNode = postData.optJSONObject("comments");
+                    JSONObject videoNode = postData.optJSONObject("videos");
 
                     String image = imageNode.getJSONObject("standard_resolution").getString("url");
                     String caption = captionNode == null ? "" : captionNode.getString("text");
                     int likes = likesNode.getInt("count");
                     Long createdTime = null;
+                    String id = postData.getString("id");
 
                     User user = new User(userNode);
-                    Post post = new Post(image, caption, likes, user);
+                    Post post = new Post(id, image, caption, likes, user);
 
                     if(!postData.isNull("created_time")) {
                         createdTime = Long.parseLong(postData.optString("created_time"));
@@ -90,6 +98,9 @@ public class Post {
                     if(commentsNode != null) {
                         post.comments = new CommentList(commentsNode);
                     }
+                    if(videoNode != null) {
+                        post.videoUrl = videoNode.getJSONObject("standard_resolution").getString("url");
+                    }
                     posts.add(post);
                 }
             } catch (JSONException e) {
@@ -99,7 +110,7 @@ public class Post {
         }
 
         @Override
-        public void onFailure(int statusCode, String message) {
+        public void onFailure(int type, int statusCode, String message) {
             onLoadCallback.onFail(String.format("Failed to load Instagram. Error code %d: %s",statusCode,message));
         }
     }

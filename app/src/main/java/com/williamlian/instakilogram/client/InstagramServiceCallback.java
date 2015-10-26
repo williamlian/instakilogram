@@ -5,9 +5,9 @@ import org.json.JSONObject;
 
 public interface InstagramServiceCallback {
 
-    void onSuccess(JSONArray data);
+    void onSuccess(int type, JSONArray data);
 
-    void onSuccess(JSONObject data);
+    void onSuccess(int type, JSONObject data);
 
-    void onFailure(int statusCode, String message);
+    void onFailure(int type, int statusCode, String message);
 }

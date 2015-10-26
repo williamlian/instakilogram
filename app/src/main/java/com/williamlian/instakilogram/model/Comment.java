@@ -8,6 +8,10 @@ public class Comment {
     public String comment;
     public Long commentedAt;
 
+    public Comment() {
+
+    }
+
     public Comment(JSONObject commentNode) {
         try {
             comment = commentNode.optString("text");
