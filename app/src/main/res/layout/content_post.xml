@@ -8,43 +8,65 @@
         android:id="@+id/iv_profilePhoto"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher"/>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="User Name"
-        android:id="@+id/tv_userName"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/iv_profilePhoto"
-        android:layout_alignParentRight="true"
-        android:textColor="#001d48"
-        android:textStyle="bold" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Caption"
-        android:id="@+id/tv_title"
+        android:layout_toRightOf="@id/iv_profilePhoto"
+        android:layout_alignTop="@id/iv_profilePhoto"
         android:layout_alignBottom="@id/iv_profilePhoto"
-        android:layout_toRightOf="@+id/iv_profilePhoto"
+        android:orientation="vertical"
+        android:id="@+id/ll_user">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="User Name"
+            android:id="@+id/tv_userName"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/iv_profilePhoto"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorDarkText"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Location"
+            android:id="@+id/tv_location"
+            android:singleLine="true"
+            android:textColor="@color/colorHighlightText"
+            android:gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:textColor="#3987bb"
-        android:singleLine="true" />
+        android:id="@+id/tv_age"
+        android:textColor="@color/colorDim"
+        android:layout_alignBottom="@id/iv_profilePhoto"
+        android:layout_alignTop="@id/iv_profilePhoto"
+        android:layout_toRightOf="@id/ll_user"
+        android:gravity="right|center_vertical"
+        android:textAppearance="?android:attr/textAppearanceSmall"/>
 
-
-    <ImageView
+    <com.williamlian.instakilogram.widget.ResizableImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:id="@+id/iv_main"
         android:src="@mipmap/ic_launcher"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/iv_profilePhoto"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         />
 
     <TextView
@@ -56,4 +78,16 @@
         android:layout_below="@+id/iv_main"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Caption"
+        android:id="@+id/tv_title"
+        android:layout_below="@id/tv_likes"
+        android:textColor="@color/colorHighlightText"
+        android:textColorLink="@color/colorDarkText"
+        android:textStyle="normal"/>
+
 </RelativeLayout>

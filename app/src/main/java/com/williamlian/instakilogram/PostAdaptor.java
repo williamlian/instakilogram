@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.williamlian.instakilogram.helper.CircleTransform;
+import com.williamlian.instakilogram.helper.CommentSpanTextFactory;
 import com.williamlian.instakilogram.model.Post;
 
 import java.util.ArrayList;
@@ -27,15 +29,33 @@ public class PostAdaptor extends ArrayAdapter<Post> {
         TextView tv_title = (TextView)convertView.findViewById(R.id.tv_title);
         TextView tv_user = (TextView)convertView.findViewById(R.id.tv_userName);
         TextView tv_likes = (TextView)convertView.findViewById(R.id.tv_likes);
+        TextView tv_age = (TextView)convertView.findViewById(R.id.tv_age);
+        TextView tv_location = (TextView)convertView.findViewById(R.id.tv_location);
         ImageView iv_main = (ImageView)convertView.findViewById(R.id.iv_main);
         ImageView iv_user = (ImageView)convertView.findViewById(R.id.iv_profilePhoto);
 
-        tv_title.setText(post.title);
+        tv_title.setText(CommentSpanTextFactory.getSpannedString(getContext(), post.author.userName, post.title));
         tv_user.setText(post.author.userName);
-        tv_likes.setText(String.format("%d %s",post.likes,(post.likes > 1 ? "likes" : "like")));
+        tv_likes.setText(String.format("%d %s", post.likes, (post.likes > 1 ? "likes" : "like")));
+        tv_age.setText(post.getAge());
+        if(post.location != null) {
+            tv_location.setText(post.location);
+            tv_location.setVisibility(View.VISIBLE);
+        }
+        else {
+            tv_location.setVisibility(View.GONE);
+        }
 
-        Picasso.with(getContext()).load(post.imageUrl).into(iv_main);
-        Picasso.with(getContext()).load(post.author.profilePhoto).into(iv_user);
+        Picasso.with(getContext()).
+                load(post.imageUrl).
+                placeholder(R.drawable.placeholder).
+                into(iv_main);
+
+        Picasso.with(getContext()).
+                load(post.author.profilePhoto).
+                placeholder(R.drawable.placeholder).
+                transform(new CircleTransform()).
+                into(iv_user);
 
         return convertView;
     }

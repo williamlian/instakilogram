@@ -12,7 +12,7 @@
             android:name=".MainActivity"
             android:label="@string/popular_photo"
             android:theme="@style/AppTheme.NoActionBar"
-            android:logo="@mipmap/ic_appicon">
+            android:icon="@mipmap/ic_appicon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
