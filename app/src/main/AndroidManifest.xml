@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/popular_photo"
+            android:label="@string/app_brand_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:icon="@mipmap/ic_appicon">
             <intent-filter>
