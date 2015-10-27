@@ -1,8 +1,8 @@
-# Project 1 - *Name of App Here*
+# Project 1 - *InstaKilogram*
 
-**Name of your app** is an android app that allows a user to check out popular photos from Instagram. The app utilizes Instagram API to display images and basic image information to the user.
+**InstaKilogram** is an android app that allows a user to check out popular photos from Instagram. The app utilizes Instagram API to display images and basic image information to the user.
 
-Time spent: **X** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
