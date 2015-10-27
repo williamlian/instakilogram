@@ -24,9 +24,9 @@ The following **optional** features are implemented:
 
 The following **bonus** features are implemented:
 
-* [ ] Show last 2 comments for each photo
-* [ ] Allow user to view all comments for an image within a separate activity or dialog fragment
-* [ ] Allow video posts to be played in full-screen using the VideoView
+* [x] Show last 2 comments for each photo
+* [x] Allow user to view all comments for an image within a separate activity or dialog fragment
+* [x] Allow video posts to be played in full-screen using the VideoView
 
 The following **additional** features are implemented:
 
@@ -48,10 +48,11 @@ Describe any challenges encountered while building the app.
 
 - [Android Async HTTP](https://github.com/loopj/android-async-http) - Simple asynchronous HTTP requests with JSON parsing
 - [Picasso](http://square.github.io/picasso/) - Image loading and caching library for Android
+- [Jackson](https://github.com/FasterXML/jackson) - JSON Parser
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2015] [William Lian]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

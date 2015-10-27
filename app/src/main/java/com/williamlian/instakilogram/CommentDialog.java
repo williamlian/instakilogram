@@ -3,7 +3,6 @@ package com.williamlian.instakilogram;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.owlike.genson.Genson;
 import com.williamlian.instakilogram.helper.CommentHelper;
-import com.williamlian.instakilogram.helper.CommentSpanTextFactory;
 import com.williamlian.instakilogram.model.Comment;
 import com.williamlian.instakilogram.model.CommentList;
 

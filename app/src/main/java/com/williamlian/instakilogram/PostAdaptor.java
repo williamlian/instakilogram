@@ -1,10 +1,8 @@
 package com.williamlian.instakilogram;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
-import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,15 +11,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.owlike.genson.Genson;
 import com.squareup.picasso.Picasso;
 import com.williamlian.instakilogram.helper.CircleTransform;
 import com.williamlian.instakilogram.helper.CommentHelper;
 import com.williamlian.instakilogram.helper.CommentSpanTextFactory;
-import com.williamlian.instakilogram.model.Comment;
 import com.williamlian.instakilogram.model.Post;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -124,6 +118,8 @@ public class PostAdaptor extends ArrayAdapter<Post> {
                 transform(new CircleTransform()).
                 into(iv_user);
 
+        convertView.setClickable(false);
+        convertView.setOnClickListener(null);
         return convertView;
     }
 }

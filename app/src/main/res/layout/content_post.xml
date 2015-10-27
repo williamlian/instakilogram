@@ -61,15 +61,21 @@
         android:minWidth="@dimen/age_min_width"
         android:paddingRight="@dimen/title_box_padding">
 
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="right|center_vertical"
+            android:src="@drawable/ic_age"
+            android:scaleType="fitXY"/>
+
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="24dp"
-            android:textSize="16dp"
+            android:layout_height="match_parent"
             android:gravity="center_vertical"
+            android:layout_gravity="right"
             android:id="@+id/tv_age"
             android:textColor="@color/colorDim"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:drawableLeft="@drawable/ic_small_age"/>
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     </LinearLayout>
 
