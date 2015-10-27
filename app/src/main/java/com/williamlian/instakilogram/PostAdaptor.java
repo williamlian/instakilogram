@@ -2,6 +2,7 @@ package com.williamlian.instakilogram;
 
 import android.app.ActionBar;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class PostAdaptor extends ArrayAdapter<Post> {
         TextView tv_location = (TextView) convertView.findViewById(R.id.tv_location);
         ImageView iv_main = (ImageView) convertView.findViewById(R.id.iv_main);
         ImageView iv_user = (ImageView) convertView.findViewById(R.id.iv_profilePhoto);
+        ImageView iv_videoIcon = (ImageView) convertView.findViewById(R.id.iv_video_icon);
 
         tv_title.setText(CommentSpanTextFactory.getSpannedString(getContext(), post.author.userName, post.title));
         tv_user.setText(post.author.userName);
@@ -93,6 +95,22 @@ public class PostAdaptor extends ArrayAdapter<Post> {
                     ll_comment.addView(tv_comment, i);
                 }
             }
+        }
+
+        //video
+        if(post.videoUrl != null) {
+            iv_videoIcon.setVisibility(View.VISIBLE);
+            iv_main.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent videoPlayIntent = new Intent(getContext(), VideoViewActivity.class);
+                    videoPlayIntent.putExtra("url", post.videoUrl);
+                    getContext().startActivity(videoPlayIntent);
+                }
+            });
+
+        } else {
+            iv_videoIcon.setVisibility(View.INVISIBLE);
         }
 
         Picasso.with(getContext()).

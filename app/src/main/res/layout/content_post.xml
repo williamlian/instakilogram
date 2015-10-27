@@ -20,6 +20,7 @@
         android:layout_alignTop="@id/iv_profilePhoto"
         android:layout_alignBottom="@id/iv_profilePhoto"
         android:orientation="vertical"
+        android:gravity="center_vertical"
         android:id="@+id/ll_user">
 
         <TextView
@@ -31,6 +32,7 @@
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/iv_profilePhoto"
             android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
             android:textColor="@color/colorDarkText"
             android:textStyle="bold"
             android:layout_gravity="center_vertical"/>
@@ -47,38 +49,62 @@
 
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:id="@+id/tv_age"
-        android:textColor="@color/colorDim"
         android:layout_alignBottom="@id/iv_profilePhoto"
         android:layout_alignTop="@id/iv_profilePhoto"
         android:layout_toRightOf="@id/ll_user"
         android:gravity="right|center_vertical"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:paddingRight="@dimen/title_box_padding"
-        android:minWidth="@dimen/age_min_width"/>
+        android:orientation="horizontal"
+        android:minWidth="@dimen/age_min_width"
+        android:paddingRight="@dimen/title_box_padding">
 
-    <com.williamlian.instakilogram.widget.ResizableImageView
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:textSize="16dp"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_age"
+            android:textColor="@color/colorDim"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:drawableLeft="@drawable/ic_small_age"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:id="@+id/iv_main"
-        android:src="@mipmap/ic_launcher"
+        android:layout_below="@+id/iv_profilePhoto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/iv_profilePhoto"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        />
+        android:id="@+id/rl_main_image">
+
+        <com.williamlian.instakilogram.widget.ResizableImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_main"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_video"
+            android:id="@+id/iv_video_icon"
+            android:adjustViewBounds="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/iv_main"
+        android:layout_below="@id/rl_main_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:padding="@dimen/comment_box_padding">
