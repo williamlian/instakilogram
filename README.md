@@ -30,19 +30,23 @@ The following **bonus** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x] Video items are marked with a small recorder icon on the top right
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![Demo](demo.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+* Document says Picassa already supports item pre-loading but I am still seeing significant load lag.
+  Is that simulator related?
+* When coming back from the video play activity, I lose the posts and the position. The main activity
+  is reloaded and scroll back to the top. It should be maintained through onResume and onPause but I
+  did not have time to work on it.
 
 ## Open-source libraries used
 
